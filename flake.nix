@@ -16,19 +16,20 @@
       nixos = lib.nixosSystem {
         inherit system;
         specialArgs = { inherit inputs; };  # Pass inputs to modules
-        
+      
         modules = [
           ./configuration.nix
           ({ pkgs, ... }: {
             environment.systemPackages = with pkgs; [
               warp-terminal
               neovim
-              pkgs.llvmPackages.libcxxClang
+              llvmPackages.libcxxClang
               wget
               nixd
               git
               curl
 	            gnumake
+              openssl
               zed-editor
               vscode
 	            brave
@@ -44,7 +45,7 @@
               racket
               deno
               nodejs
-
+              dart-sass
             ];
           })
         ];

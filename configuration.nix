@@ -86,7 +86,7 @@
     #  thunderbird
     ];
   };
-
+  # loselly installed executebales
   programs.nix-ld.enable = true;
 
 
@@ -98,15 +98,21 @@
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
+fonts.enableDefaultPackages = true;
 
-  
-  # List packages installed in system profile. To search, run:
+fonts.packages = with pkgs; [
+  noto-fonts-emoji
+  fira-code
+  fira-code-symbols
+  (nerdfonts.override { fonts = [ "CascadiaCode" "DroidSansMono" ]; })
+];
+
+# List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-  #  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
-    #wget
-       (nerdfonts.override { fonts = [ "FiraCode" "CascadiaCode" ]; })
-
+    vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
+    wget
+       #(nerdfonts.override { fonts = [ "FiraCode" "CascadiaCode" ]; })
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
